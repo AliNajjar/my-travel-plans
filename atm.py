@@ -1,14 +1,24 @@
-def receive(request, money):
+def withdraw(balance, request):
+    
+    print "current balance =", balance
     cash = [100, 50, 10, 5, 4, 3, 2, 1]
-    if request > money:
+    if request > balance:
         print "there is no money sufficient"
-        print "there is only", money
-    elif request <= money:
+    elif request <= balance:
+        balance -= request
         for i in cash:
             while request >= i:
                 print "give:", i
                 request -= i
+        print "---------------"
+
     else:
         print "Request should be more than zero"
 
-receive(258, 500)
+    return balance
+
+balance = 500
+
+balance = withdraw(balance, 277)
+balance = withdraw(balance, 30)
+balance = withdraw(balance, 5)
