@@ -3,28 +3,28 @@ class ATM:
         self.balance = balance
         self.bank_name = bank_name
 
-def withdraw(self, request):
-    print "welcome to", self.bank_name
-    print "current balance =", self.balance
-    print "========================="
-
-    cash = [100, 50, 10, 5, 4, 3, 2, 1]
-    if request > self.balance:
-        print "there is no money sufficient"
-        print "========================="
-    elif request <= self.balance:
-        self.balance -= request
-        for i in cash:
-            while request >= i:
-                print "give:", i
-                request -= i
-        print "---------------"
-
-    else:
-        print "Request should be more than zero"
+    def withdraw(self, request):
+        print "welcome to", self.bank_name
+        print "current balance =", self.balance
         print "========================="
 
-    return self.balance
+        cash = [100, 50, 10, 5, 4, 3, 2, 1]
+        if request > self.balance:
+            print "there is no money sufficient"
+            print "========================="
+        elif request <= self.balance:
+            self.balance -= request
+            for i in cash:
+                while request >= i:
+                    print "give:", i
+                    request -= i
+            print "========================="
+
+        else:
+            print "Request should be more than zero"
+            print "========================="
+
+        return self.balance
 
 
 balance1 = 500
