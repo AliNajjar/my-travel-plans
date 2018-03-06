@@ -8,5 +8,5 @@ post2 = models.Post("second post", "How are you")
 post3 = models.Post("third post", "What do you do")
 
 
-member1.showinfo()
-post1.showinfo()
+print member1
+print post1

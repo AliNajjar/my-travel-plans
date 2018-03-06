@@ -3,9 +3,8 @@ class Member:
         self.name = name
         self.age = age
 
-    def showinfo(self):
-        print "Name:", self.name
-        print "Age:", self.age
+    def __str__(self):
+        return 'Name: {} \nAge: {}'.format(self.name, self.age)
 
 
 class Post:
@@ -13,6 +12,5 @@ class Post:
         self.title = title
         self.subject = subject
 
-    def showinfo(self):
-        print "Title:", self.title
-        print "Subject:", self.subject
+    def __str__(self):
+        return 'Title: {} \nContent: {}'.format(self.title, self.subject)
