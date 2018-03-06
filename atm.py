@@ -4,33 +4,38 @@ class ATM:
         self.bank_name = bank_name
         self.withdrawals_ls = []
 
-    def withdraw(self, request):
-        print "welcome to", self.bank_name
-        print "current balance =", self.balance
+    @staticmethod
+    def process_request(request):
+        cash = [100, 50, 10, 5, 4, 3, 2, 1]
+        for i in cash:
+            while request >= i:
+                print "Give:", i
+                request -= i
         print "========================="
 
-        cash = [100, 50, 10, 5, 4, 3, 2, 1]
+    def withdraw(self, request):
+        print "Welcome to", self.bank_name
+        print "Current balance =", self.balance
+        print "Money required:", request
+        print "========================="
+
         if request > self.balance:
-            print "there is no money sufficient"
+            print "There is no money sufficient"
             print "========================="
         elif request <= self.balance:
             self.withdrawals_ls.append(request)
             self.balance -= request
-            for i in cash:
-                while request >= i:
-                    print "give:", i
-                    request -= i
-            print "========================="
+            self.process_request(request)
 
         else:
             print "Request should be more than zero"
             print "========================="
 
         return self.balance
-    
+
     def show_withdrawals(self):
         for withdrawal in self.withdrawals_ls:
-            print "withdrawals:", withdrawal
+            print "Withdrawals:", withdrawal
         print "========================="
 
 
