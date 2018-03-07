@@ -16,7 +16,11 @@ member_store.add(member1)
 a = member_store.get_all()
 print a
 
-post_store = store.PostStore()
-post_store.add(post1)
-b = post_store.get_all()
-print b
+xx = member_store.get_by_id(1)
+print xx
+
+y = member_store.entity_exists(member2)
+print y
+
+z = member_store.delete(1)
+print z
