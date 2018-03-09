@@ -1,26 +1,88 @@
 import models
 import store
 
-member1 = models.Member("Ali Najjar", 26)
-member2 = models.Member("Muhammad Najjar", 29)
 
-post1 = models.Post("first post", "Hello, I am Ali")
-post2 = models.Post("second post", "How are you")
-post3 = models.Post("third post", "What do you do")
+def create_members():
 
-print member1
-print post1
+    member1 = models.Member("Mohammad", 20)
+    member2 = models.Member("Omar", 22)
+    member3 = models.Member("Abdo", 25)
+    print(member1)
+    print(member2)
+    print(member3)
+    print("=" * 30)
+
+    return member1, member2, member3
+
+
+def store_should_add_models(members_instances, member_store):
+
+    for member in members_instances:
+        member_store.add(member)
+
+
+def stores_should_be_similar():
+
+    member_store1 = store.MemberStore()
+    member_store2 = store.MemberStore()
+    if member_store1.get_all() is member_store2.get_all():
+        print("Same stores elements !")
+
+
+def print_all_members(member_store):
+    print("=" * 30)
+
+    for member in member_store.get_all():
+        print(member)
+
+    print("=" * 30)
+
+
+def get_by_id_should_retrieve_same_object(member_store, member2):
+    member2_retrieved = member_store.get_by_id(member2.id)
+
+    if member2 is member2_retrieved:
+        print("member2 and member2_retrieved are matching !")
+
+
+def update_should_modify_object(member_store, member3):
+    member3_copy = models.Member(member3.name, member3.age)
+    member3_copy.id = 3
+
+    if member3_copy is not member3:
+        print("member3 and member3_copy are not the same !")
+
+    print(member3_copy)
+    member3_copy.name = "john"
+    member_store.update(member3_copy)
+    print(member_store.get_by_id(member3.id))
+
+
+def catch_exception_when_deleting():
+    try:
+        member_store.delete(5)
+    except ValueError:
+        print("It should be an existence entity before deleting !")
+
+
+members_instances = create_members()
+member1, member2, member3 = members_instances
 
 member_store = store.MemberStore()
-member_store.add(member1)
-a = member_store.get_all()
-print a
 
-xx = member_store.get_by_id(1)
-print xx
+store_should_add_models(members_instances, member_store)
 
-y = member_store.entity_exists(member2)
-print y
+stores_should_be_similar()
 
-z = member_store.delete(1)
-print z
+print_all_members(member_store)
+
+get_by_id_should_retrieve_same_object(member_store, member2)
+
+update_should_modify_object(member_store, member3)
+
+catch_exception_when_deleting()
+
+print_all_members(member_store)
+
+
+

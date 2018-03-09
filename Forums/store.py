@@ -28,9 +28,24 @@ class MemberStore:
 
     def delete(self, id):
         member = self.get_by_id(id)
-        if member.id == id:
-            MemberStore.members.remove(member)
-            return "the member is deleted"
+        MemberStore.members.remove(member)
+        return "the member is deleted"
+
+    def update(self, member):
+        all_members = self.get_all()
+        for i, p in enumerate(all_members):
+            if member.id == p.id:
+                all_members[i] = member
+                break
+
+    def get_by_name(self, member_name):
+        all_members = self.get_all()
+        for c in all_members:
+            if c.name == member_name:
+                print c.name
+
+
+
 
 
 class PostStore:
